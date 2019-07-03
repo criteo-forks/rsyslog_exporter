@@ -14,6 +14,8 @@ func getStatType(buf []byte) rsyslogType {
 		return rsyslogResource
 	} else if strings.Contains(line, "dynstats") {
 		return rsyslogDynStat
+	} else if strings.Contains(line, "dynafile cache") {
+		return rsyslogDynafileCache
 	}
 	return rsyslogUnknown
 }
