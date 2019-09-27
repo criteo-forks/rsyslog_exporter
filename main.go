@@ -9,6 +9,7 @@ import (
 	"os/signal"
 
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 var (
@@ -38,7 +39,7 @@ func main() {
 	}()
 
 	prometheus.MustRegister(exporter)
-	http.Handle(*metricPath, prometheus.Handler())
+	http.Handle(*metricPath, promhttp.Handler())
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte(`<html>
 <head><title>Rsyslog exporter</title></head>
