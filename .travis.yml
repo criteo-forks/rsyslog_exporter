@@ -1,10 +1,7 @@
 language: go
 
 go:
-    - 1.4
+    - 1.15
 
 install:
-    - go get github.com/digitalocean/rsyslog_exporter
-
-script:
-    - make test
+    - go get github.com/mycroft/rsyslog_exporter

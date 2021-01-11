@@ -1,5 +1,5 @@
-module github.com/soundcloud/rsyslog_exporter
+module github.com/mycroft/rsyslog_exporter
 
-go 1.13
+go 1.15
 
 require github.com/prometheus/client_golang v1.1.0
