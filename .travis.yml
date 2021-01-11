@@ -5,3 +5,16 @@ go:
 
 install:
     - go get github.com/mycroft/rsyslog_exporter
+
+before_deploy:
+    - gzip /home/travis/gopath/bin/rsyslog_exporter
+
+deploy:
+  provider: releases
+  api_key:
+    secure: "Eisl9QAls8Z9KNW1K+Tn6OZV4kAHlBlfR6quyKJwfkiawQcVysvbJgH/i24NOCJYGjoXzJDV/n81B5bZnjJkBOsUmj6WRPMJ6yH1hQCk0vGf0jeDL+q7WyN7L5qR+5h+n+fQcf/Vvb0RVlKl/VFY4qnCedpB+rD/hWIB+9UE7R65CaBMSz1lk62A4oR3nl/ByRPvv4hY8efZkiMifPEqXplsHxf//J+RZU/zxL2XFk1gIF3fyg2xb8m+NsX0vChBohb+IGp6/cWZHQATjKhs4miFRJiIoggkkbJmV7Y9+xAz++wsf1M5lIQCSlcKNp06AOYvrMmgAe3f1OZznju+wxNCN/vDlL0J01sfmzq3DEJ2VtM23GYI3QFAtJ2N8ywIkIK3glnAzIdHB3V88rOI5042URRuN+hHoJXGlZV1jEh7q/+xXBTk227SnG+lQbqD24lwgPXTjvI1+wQtTXwjwnlKlNy4d3wXM5ycXaq/RbzMewfFusqQipsYfXufZRUQzajzF3rzJrcoB7P1H/b8kviwxqHaeTv04a//2648oqln8ytZUk6TX29hW+6nyJuQ8sMsifKPv/5hNJPdQUKmdSF8nD9sVG8rRugO71stzKckjVHf7kSUqSuspN61OTcq2HeaIdecC5FJCcK6QkAO+QfGqwBslH2UHwZnXQ8MpM4="
+  file: /home/travis/gopath/bin/rsyslog_exporter.gz
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: mycroft/rsyslog_exporter
