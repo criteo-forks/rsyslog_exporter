@@ -15,6 +15,7 @@ import (
 var (
 	listenAddress = flag.String("web.listen-address", ":9104", "Address to listen on for web interface and telemetry.")
 	metricPath    = flag.String("web.telemetry-path", "/metrics", "Path under which to expose metrics.")
+	use_cee       = flag.Bool("format.cee", false, "Use CEE format instead of JSON as input.")
 )
 
 func main() {
@@ -25,6 +26,7 @@ func main() {
 
 	flag.Parse()
 	exporter := newRsyslogExporter()
+	exporter.use_cee = *use_cee
 
 	go func() {
 		c := make(chan os.Signal, 1)

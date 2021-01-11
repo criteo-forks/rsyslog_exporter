@@ -29,6 +29,7 @@ type rsyslogExporter struct {
 	logfile *os.File
 	scanner *bufio.Scanner
 	pointStore
+	use_cee bool
 }
 
 func newRsyslogExporter() *rsyslogExporter {
@@ -43,11 +44,17 @@ func newRsyslogExporter() *rsyslogExporter {
 }
 
 func (re *rsyslogExporter) handleStatLine(rawbuf []byte) error {
-	s := bytes.SplitN(rawbuf, []byte(" "), 4)
-	if len(s) != 4 {
+	idx := 0
+
+	if re.use_cee {
+		idx += 1
+	}
+
+	s := bytes.SplitN(rawbuf, []byte(" "), 4+idx)
+	if len(s) != 4+idx {
 		return fmt.Errorf("failed to split log line, expected 4 columns, got: %v", len(s))
 	}
-	buf := s[3]
+	buf := s[3+idx]
 
 	pstatType := getStatType(buf)
 
