@@ -16,6 +16,8 @@ func getStatType(buf []byte) rsyslogType {
 		return rsyslogDynStat
 	} else if strings.Contains(line, "dynafile cache") {
 		return rsyslogDynafileCache
+	} else if strings.Contains(line, "called.recvmmsg") {
+		return rsyslogMessage
 	}
 	return rsyslogUnknown
 }

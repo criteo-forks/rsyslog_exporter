@@ -21,6 +21,7 @@ const (
 	rsyslogResource
 	rsyslogDynStat
 	rsyslogDynafileCache
+	rsyslogMessage
 )
 
 type rsyslogExporter struct {
@@ -100,6 +101,14 @@ func (re *rsyslogExporter) handleStatLine(rawbuf []byte) error {
 			return err
 		}
 		for _, p := range d.toPoints() {
+			re.set(p)
+		}
+	case rsyslogMessage:
+		m, err := newMessageFromJSON(buf)
+		if err != nil {
+			return err
+		}
+		for _, p := range m.toPoints() {
 			re.set(p)
 		}
 
