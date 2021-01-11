@@ -1,4 +1,4 @@
-module github.com/mycroft/rsyslog_exporter
+module github.com/criteo-forks/rsyslog_exporter
 
 go 1.15
 

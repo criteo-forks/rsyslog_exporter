@@ -4,7 +4,7 @@ go:
     - 1.15
 
 install:
-    - go get github.com/mycroft/rsyslog_exporter
+    - go get github.com/criteo-forks/rsyslog_exporter
 
 before_deploy:
     - gzip /home/travis/gopath/bin/rsyslog_exporter
@@ -17,4 +17,4 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    repo: mycroft/rsyslog_exporter
+    repo: criteo-forks/rsyslog_exporter
