@@ -7,13 +7,13 @@ install:
     - go get github.com/criteo-forks/rsyslog_exporter
 
 before_deploy:
-    - gzip /home/travis/gopath/bin/rsyslog_exporter
+    - cd /home/travis/gopath/bin/ && tar cvfz rsyslog_exporter.tar.gz rsyslog_exporter
 
 deploy:
   provider: releases
   api_key:
     secure: "kTAJEwtiGE6oXcvJi8+MATCAbl+KAwf16VkF9uBYorhzrn3dtOWqiA32jOV7unuX8pub8ysS8utyMeHlDyK0GwjSTJX00cA3jdGOHCnPmTvku3waL4C8eprQtfkykHm3FAIOpBK6ZyA/+vPSyS2qxl+PvFEztKogn/M11OLMVaXvpeBZQc5NM1sjJT4Q06bGwbdU1gXWHe5pLrZW3AUtn7mAHmsy88OmV7ZhOkpiDmgj0DrZlqBwtkZQIwArzavkNfjrGm3tefYtfXy5JOENTfMNJ7V49cXplY7T5YqpkMyxHgYOIkaCNDZh6p+GSEESIWzRGBAImjTw3NirDY5pRIpv+5/Uq7Ub0fpeouW1niuQ49H9Yr2OQx3Gv4LlqBiXMGkA8uKZt92smHUI0DrDdBBfEoPRzM1PgIDJ1URGN86to9QVVmQVbImKkiWqbyxEiDzehzk8JgQsbgFd0nW6uopBCNCIYiwl/4EgNbDViuqd7JEWRvkkzQLUOz8CJb7+Zle24jzp9lg4CaMlx8LJNzorNMF7ydKY2Ls7EXiiEb9IKMJfEMfgjXkiEGMu8B2gqvPC75tw1tXqOUoNL0bnCAflZVy7cgn/IHalwDLenj29gSb/j7YK+9d17DeuIMvKuudMvtkNRLRj2s6QeLYznJTBUf3rkqS6CyXrSTx3Yss="
-  file: /home/travis/gopath/bin/rsyslog_exporter.gz
+  file: /home/travis/gopath/bin/rsyslog_exporter.tar.gz
   skip_cleanup: true
   on:
     tags: true
